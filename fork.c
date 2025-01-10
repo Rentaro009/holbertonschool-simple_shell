@@ -15,7 +15,7 @@ int execute_command(char *cmd, char **argv)
 	int status;
 
 	pid = fork();
-	if pid (pid == 0 )
+	if (pid == 0)
 	{
 		if (execve(cmd, argv, environ) == -1)
 		{
