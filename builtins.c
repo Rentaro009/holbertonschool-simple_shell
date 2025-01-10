@@ -38,5 +38,5 @@ int handle_builtins(char *line, char **argv)
 		return (1);
 	}
 
-	return (0)
+	return (0);
 }
