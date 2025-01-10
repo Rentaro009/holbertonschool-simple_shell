@@ -75,8 +75,3 @@ char *find_command_in_path(char *command)
 	free(path_copy);
 	return (NULL);
 }
-
-
-
-
-
