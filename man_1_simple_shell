@@ -1,0 +1,76 @@
+NAME
+simple_shell — a basic command-line interpreter for executing commands.
+
+SYNOPSIS
+simple_shell
+
+DESCRIPTION
+The simple_shell is a minimalistic shell that reads user input, parses it into commands and arguments, and executes the specified commands. It operates in an interactive loop, allowing users to run basic system commands until they exit the shell.
+
+FEATURES
+Executes basic commands such as ls, pwd, echo, etc.
+Supports multiple arguments for commands (e.g., ls -l).
+Built-in exit command to terminate the shell.
+Error handling for invalid commands.
+
+USAGE
+To start the simple shell, compile the source code and execute the program:
+
+gcc -Wall -Werror -Wextra -pedantic simple_shell.c -o simple_shell  
+./simple_shell
+
+COMMANDS
+Standard Commands:
+Run any system command available in the $PATH (e.g., ls, mkdir, cat).
+
+Built-in Commands:
+
+exit: Terminates the shell.
+
+Example usage:
+
+simple_shell$ ls -l  
+simple_shell$ echo "Hello, World!"  
+simple_shell$ exit
+
+IMPLEMENTATION DETAILS
+The simple_shell works as follows:
+
+Input Handling:
+Reads user input using fgets().
+
+Parsing:
+Splits the input string into command and arguments using strtok().
+
+Process Creation:
+Uses fork() to create a new process.
+
+Command Execution:
+Executes the command in the child process using execvp().
+
+Error Handling:
+Displays an error message if the command fails to execute.
+
+EXAMPLES
+List files in the current directory:
+
+simple_shell$ ls  
+Print the current working directory:
+
+simple_shell$ pwd  
+Exit the shell:
+
+simple_shell$ exit
+
+FILES
+None — The simple shell does not rely on any specific configuration files.
+
+BUGS
+This is a basic implementation with the following limitations:
+
+Does not support piping (|).
+Does not handle input/output redirection (> and <).
+Limited error reporting for complex command failures.
+
+AUTHOR
+Developed by [Rene Alsina and William Alvarado].
