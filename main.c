@@ -5,7 +5,7 @@
  *
  * Description: The function provides a loop that acts as a command-line
  * interface for the user, it will read commands from standard input,
- * removes unnecessary whitespaces, and passes input to '_fork' for 
+ * removes unnecessary whitespaces, and passes input to '_fork' for
  * execution.
  *
  * Return: the exit status
@@ -39,7 +39,7 @@ int main(void)
 		exit_status = _fork(line);
 	}
 
-	free (line);
+	free(line);
 
 	return (exit_status);
 }
