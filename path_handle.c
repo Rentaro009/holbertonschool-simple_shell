@@ -11,7 +11,7 @@ char *get_path_env(void)
 	while (environ[i])
 	{
 		if (strncmp(environ[i], "PATH=", 5) == 0)
-			return (environ[i] + 5); 
+			return (environ[i] + 5);
 		i++;
 	}
 
@@ -19,11 +19,11 @@ char *get_path_env(void)
 	while (environ[i])
 	{
 		if (strncmp(environ[i], "PATH1=", 6) == 0)
-			return (environ[i] + 6); 
+			return (environ[i] + 6);
 		i++;
 	}
 
-	return (NULL); 
+	return (NULL);
 }
 
 
@@ -39,9 +39,9 @@ char *find_command_in_path(char *command)
 	char *path, *path_copy, *token, *full_path;
 
 	if (stat(command, &st) == 0 && (st.st_mode & S_IXUSR))
-		return (strdup(command)); 
+		return (strdup(command));
 
-	
+
 	path = get_path_env();
 	if (!path)
 		return (NULL);
@@ -65,7 +65,7 @@ char *find_command_in_path(char *command)
 		if (stat(full_path, &st) == 0 && (st.st_mode & S_IXUSR))
 		{
 			free(path_copy);
-			return (full_path); 
+			return (full_path);
 		}
 
 		free(full_path);
@@ -73,7 +73,7 @@ char *find_command_in_path(char *command)
 	}
 
 	free(path_copy);
-	return (NULL); 
+	return (NULL);
 }
 
 
