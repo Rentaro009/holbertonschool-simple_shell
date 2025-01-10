@@ -67,7 +67,7 @@ char *find_command_in_path(char *command)
 			free(path_copy);
 			return (full_path);
 		}
-
+		free(token);
 		free(full_path);
 		token = strtok(NULL, ":");
 	}
