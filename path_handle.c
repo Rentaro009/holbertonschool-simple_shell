@@ -1,46 +1,52 @@
 #include "main.h"
+
 /**
- * get_path_env - Gets the value of the PATH or PATH1 environment var
+ * get_path_env - Retrieves the value of the PATH or PATH1
+ * environment variable.
  *
- * Return: Ptr to value of PATH or PATH1
+ * Return: Pointer to the value of PATH or PATH1, or NULL if not found.
  */
+
 char *get_path_env(void)
 {
 	int i = 0;
 
+
 	while (environ[i])
 	{
 		if (strncmp(environ[i], "PATH=", 5) == 0)
-			return (environ[i] + 5);
+			return (environ[i] + 5); /* Skip "PATH=" */
 		i++;
 	}
+
 
 	i = 0;
 	while (environ[i])
 	{
 		if (strncmp(environ[i], "PATH1=", 6) == 0)
-			return (environ[i] + 6);
+			return (environ[i] + 6); /* Skip "PATH1=" */
 		i++;
 	}
 
 	return (NULL);
 }
 
-
 /**
- * find_command_in_path - Finds the path of the command
- * @command: The command to searched for
+ * find_command_in_path - Finds the full path of a command.
  *
- * Return: Ptr to str containing the entire path
+ * @command: The command to search for.
+ *
+ * Return: Pointer to a string containing the full path, or NULL if not found.
  */
+
 char *find_command_in_path(char *command)
 {
 	struct stat st;
 	char *path, *path_copy, *token, *full_path;
 
-	if (stat(command, &st) == 0 && (st.st_mode & S_IXUSR))
-		return (strdup(command));
 
+	if (strchr(command, '/') && stat(command, &st) == 0 && (st.st_mode & S_IXUSR))
+		return (strdup(command));
 
 	path = get_path_env();
 	if (!path)
@@ -67,7 +73,7 @@ char *find_command_in_path(char *command)
 			free(path_copy);
 			return (full_path);
 		}
-		free(token);
+
 		free(full_path);
 		token = strtok(NULL, ":");
 	}

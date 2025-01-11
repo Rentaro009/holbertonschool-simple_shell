@@ -27,9 +27,8 @@ int execute_command(char *cmd, char **argv)
 	else if (pid > 0)
 	{
 		wait(&status);
-
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
+		free(cmd);
+		return (WEXITSTATUS(status));
 	}
 	else
 	{
